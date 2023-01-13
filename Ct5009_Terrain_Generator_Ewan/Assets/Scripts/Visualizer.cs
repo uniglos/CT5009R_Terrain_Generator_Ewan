@@ -5,6 +5,7 @@ using UnityEngine;
 //BearTheCoder - Perlin Noise and Unity - https://www.youtube.com/watch?v=BO7x58NwGaU
 public class Visualizer : MonoBehaviour
 {
+    //Set the script we are getting our noiseMap from
     [SerializeField]
     PerlinNoiseGen PerlinNoiseGen;
 
@@ -18,6 +19,7 @@ public class Visualizer : MonoBehaviour
     void Update()
     {
         Renderer MapRenderer = GetComponent<Renderer>();
+        //Render the noise map using the 2D array from Perlin Noise Generator
         MapRenderer.material.mainTexture = Visualize(PerlinNoiseGen.MapArray);
     }
 

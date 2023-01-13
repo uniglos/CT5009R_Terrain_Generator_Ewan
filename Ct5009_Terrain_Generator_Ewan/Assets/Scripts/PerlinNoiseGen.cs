@@ -7,11 +7,11 @@ using UnityEngine;
 //Sebastian Lague - Procedural Landmass Generation - https://youtu.be/MRNFcywkUSA
 public class PerlinNoiseGen : MonoBehaviour
 {
-    private int CurrentWidth = 100;
+    private int CurrentWidth = 10;
     [SerializeField]
     public int NewWidth;
     
-    private int CurrentHeight = 100;
+    private int CurrentHeight = 10;
     [SerializeField]
     public int NewHeight;
     
@@ -67,6 +67,7 @@ public class PerlinNoiseGen : MonoBehaviour
             ChangeSize();
         }
 
+        //Declare Maximum Noise and Minimum Noise
         float maxNoise = float.MinValue;
         float minNoise = float.MaxValue;
         for (int x = 0; x <= CurrentWidth; x++)
@@ -81,7 +82,8 @@ public class PerlinNoiseGen : MonoBehaviour
                     //As we increment through the coordinates of our map
                     //Generate a colour between white and black using perlin noise
                     float XCoord = ((((float)x / CurrentWidth) * (Scale / 2)) * frequency) + XOffset;
-                    float YCoord = ((((float)y / CurrentHeight) * (Scale / 2)) * frequency) + YOffset;
+                    float YCoord = ((((float)y / CurrentHeight) * (Scale / 2 )) * frequency) + YOffset;
+                    //Multiply by 2 and takeaway 1 to enable the noise to be positive and negative
                     float PerlinNoise = Mathf.PerlinNoise(XCoord, YCoord) * 2 - 1;
                     noiseHeight += PerlinNoise * amplitude;
                     
@@ -89,10 +91,12 @@ public class PerlinNoiseGen : MonoBehaviour
                     amplitude *= Persistance;
                     frequency *= Lacunarity;
 
+                    //Set the highest noise recorded as the max noise
                     if (noiseHeight > maxNoise)
                     {
                         maxNoise = noiseHeight;
                     }
+                    //Set the lowest noise recorded as the min noise
                     else if (noiseHeight < minNoise)
                     {
                         minNoise = noiseHeight;
@@ -111,6 +115,8 @@ public class PerlinNoiseGen : MonoBehaviour
             {
                 if (NormalizeOctave)
                 {
+                    //keeps the value of the output of the noise map between 1 and 0 
+                    //based on the maximum and minimum of the noisemap
                     MapArray[x, y] = Mathf.InverseLerp(minNoise, maxNoise, MapArray[x, y]);
                 }
                 

@@ -25,12 +25,10 @@ public class MeshGenerator : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         collider = GetComponent<MeshCollider>();
         MapArray = PerlinNoiseGen.MapArray;
-        Debug.Log(MapArray);
-        //PerlinNoiseGen.P_Noise_Generator();
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         PerlinNoiseGen.P_Noise_Generator();
         CreateShape(PerlinNoiseGen.MapArray);
@@ -38,6 +36,7 @@ public class MeshGenerator : MonoBehaviour
         {
             Terrain.GenerateTerrain(PerlinNoiseGen.MapArray);
             DoneOnce = true;
+            
         }
         if (Terrain.Parent.transform.childCount != PerlinNoiseGen.MapArray.Length)
         {
@@ -56,13 +55,20 @@ public class MeshGenerator : MonoBehaviour
     {
         {
             //Create a 2D array of vertices
-            vertices = new Vector3[(PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1)];
+            if (vertices == null || vertices.Length != (PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1))
+            {
+                vertices = new Vector3[(PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1)];
+            }
             for (int i = 0, y = 0; y <= PerlinNoiseGen.NewHeight; y++)
             {
                 for (int x = 0; x <= PerlinNoiseGen.NewWidth; x++)
                 {
-                    //For each vertex at each corner, change its Y value to represent the Perlin Noise
-                    vertices[i] = new Vector3(x, PerlinNoiseGen.MapArray[x, y] * 10, y);
+                    //For each vertex, change its Y value to represent the Perlin Noise
+                    if (vertices[i] != new Vector3(x, PerlinNoiseGen.MapArray[x, y] * 10, y))
+                    {
+                        vertices[i] = new Vector3(x, PerlinNoiseGen.MapArray[x, y] * 10, y);
+                    }
+                    vertices[i].y = PerlinNoiseGen.MapArray[x, y] * 10;
                     i++;
 
                 }
@@ -70,8 +76,10 @@ public class MeshGenerator : MonoBehaviour
             int vert = 0;
             int tris = 0;
             //Create a new array of Triangles in order to draw the mesh
-            triangles = new int[PerlinNoiseGen.NewWidth * PerlinNoiseGen.NewHeight * 6];
-
+            if (triangles == null || triangles.Length != PerlinNoiseGen.NewWidth * PerlinNoiseGen.NewHeight * 6)
+            {
+                triangles = new int[PerlinNoiseGen.NewWidth * PerlinNoiseGen.NewHeight * 6];
+            }
             for (int y = 0; y < PerlinNoiseGen.NewHeight; y++)
             {
                 for (int x = 0; x < PerlinNoiseGen.NewWidth; x++)

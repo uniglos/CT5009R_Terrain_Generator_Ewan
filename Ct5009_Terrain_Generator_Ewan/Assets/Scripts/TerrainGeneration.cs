@@ -23,6 +23,7 @@ public class TerrainGeneration : MonoBehaviour
         {
             for (int y = 0; y <= PerlinNoiseGen.NewHeight; y++)
             {
+                //Instantiate a prefab on each point of the grid
                 CurrentTerrain[x,y] = Instantiate(Block, new Vector3(x-(PerlinNoiseGen.NewWidth / 2),0,y - (PerlinNoiseGen.NewHeight / 2)),new Quaternion(0,0,0,0), Parent.transform);
                 
             }
@@ -38,7 +39,6 @@ public class TerrainGeneration : MonoBehaviour
             for (int y = 0; y < Height; y++)
             {
                 CurrentTerrain[x, y].transform.position = new Vector3(x - (Width / 2)+Parent.transform.position.x, Elevation[x,y]*10 + Parent.transform.position.y, y - (Height / 2) + Parent.transform.position.z);
-
             }
         }
     }

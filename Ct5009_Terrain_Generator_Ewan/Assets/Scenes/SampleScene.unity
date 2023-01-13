@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 685049438090997473, guid: 082ff9996033f5848bcde0d7910d01d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 685049438090997473, guid: 082ff9996033f5848bcde0d7910d01d0,
         type: 3}
@@ -616,7 +616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176671861}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 110, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -851,7 +851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682911576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50, y: 0, z: -50}
+  m_LocalPosition: {x: 49.8, y: 0, z: -49.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -870,8 +870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033700f5ab5f5ad48aa3394eea18f620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWidth: 100
-  NewHeight: 100
+  NewWidth: 10
+  NewHeight: 10
   Scale: 2
   Octaves: 1
   NormalizeOctave: 1
@@ -924,7 +924,6 @@ MonoBehaviour:
   PerlinNoiseGen: {fileID: 1682911581}
   Block: {fileID: 2840799231230464250, guid: 90e176fed2b8fdc429783849909671b5, type: 3}
   Parent: {fileID: 1926748963}
-  Nodes: []
 --- !u!1 &1926748963
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926748963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -110, y: 0, z: 0}
+  m_LocalPosition: {x: -100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
