@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//References
+//Brackeys - Procedural Terrain in Unity - https://youtu.be/64NblGkAabk?t=258
+//Brackeys - Mesh Generation in Unity - https://youtu.be/eJEpeUH1EMg
 public class MeshGenerator : MonoBehaviour
 {
     [SerializeField]
@@ -39,7 +41,7 @@ public class MeshGenerator : MonoBehaviour
         }
         if (Terrain.Parent.transform.childCount != PerlinNoiseGen.MapArray.Length)
         {
-            Debug.Log("Not enough blocks");
+            //When the grid changes size, clear the grid and remake it to the correct size
             Terrain.ClearTerrain();
             Terrain.GenerateTerrain(PerlinNoiseGen.MapArray);
 
@@ -52,23 +54,24 @@ public class MeshGenerator : MonoBehaviour
 
     void CreateShape(float[,] MapArray)
     {
-        //https://youtu.be/64NblGkAabk?t=258
         {
+            //Create a 2D array of vertices
             vertices = new Vector3[(PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1)];
-            colors = new Color[(PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1)];
             for (int i = 0, y = 0; y <= PerlinNoiseGen.NewHeight; y++)
             {
                 for (int x = 0; x <= PerlinNoiseGen.NewWidth; x++)
                 {
+                    //For each vertex at each corner, change its Y value to represent the Perlin Noise
                     vertices[i] = new Vector3(x, PerlinNoiseGen.MapArray[x, y] * 10, y);
-                    colors[i] = new Color(PerlinNoiseGen.MapArray[x, y], PerlinNoiseGen.MapArray[x, y], PerlinNoiseGen.MapArray[x, y]);
                     i++;
 
                 }
             }
             int vert = 0;
             int tris = 0;
+            //Create a new array of Triangles in order to draw the mesh
             triangles = new int[PerlinNoiseGen.NewWidth * PerlinNoiseGen.NewHeight * 6];
+
             for (int y = 0; y < PerlinNoiseGen.NewHeight; y++)
             {
                 for (int x = 0; x < PerlinNoiseGen.NewWidth; x++)
@@ -94,9 +97,10 @@ public class MeshGenerator : MonoBehaviour
     {
         mesh.Clear();
 
+        //Clear the mesh and apply the vertices and triangles then recalculate the normals 
+        //so everything is facing the right way
         mesh.vertices = vertices;
         mesh.triangles = triangles;
-        mesh.colors = colors;
 
 
         mesh.RecalculateNormals();

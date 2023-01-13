@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//References
+//BearTheCoder - Perlin Noise and Unity - https://www.youtube.com/watch?v=BO7x58NwGaU
+//Sebastian Lague - Procedural Landmass Generation - https://youtu.be/MRNFcywkUSA
 public class PerlinNoiseGen : MonoBehaviour
 {
     private int CurrentWidth = 100;
@@ -72,7 +75,7 @@ public class PerlinNoiseGen : MonoBehaviour
             {
                 float amplitude = 1;
                 float frequency = 1;
-                float noiseHeight = 1;
+                float noiseHeight = 0;
                 for (int i = 0; i < Octaves; i++)
                 {
                     //As we increment through the coordinates of our map

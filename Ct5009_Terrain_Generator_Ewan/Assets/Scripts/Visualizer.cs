@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//References
+//BearTheCoder - Perlin Noise and Unity - https://www.youtube.com/watch?v=BO7x58NwGaU
 public class Visualizer : MonoBehaviour
 {
     [SerializeField]
