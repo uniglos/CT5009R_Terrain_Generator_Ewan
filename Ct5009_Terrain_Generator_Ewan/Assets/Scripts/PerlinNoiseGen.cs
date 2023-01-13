@@ -115,8 +115,8 @@ public class PerlinNoiseGen : MonoBehaviour
             {
                 if (NormalizeOctave)
                 {
-                    //keeps the value of the output of the noise map between 1 and 0 
-                    //based on the maximum and minimum of the noisemap
+                    //keeps the value of the output of the noise map between 1 and -1 
+                    //based on the maximum and minimum of the noisemap for that coordinate
                     MapArray[x, y] = Mathf.InverseLerp(minNoise, maxNoise, MapArray[x, y]);
                 }
                 

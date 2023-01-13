@@ -54,7 +54,8 @@ public class MeshGenerator : MonoBehaviour
     void CreateShape(float[,] MapArray)
     {
         {
-            //Create a 2D array of vertices
+            //Create a 2D array of vertices, it's +1 because we need the edge corners of each coordinate
+            //There is +1 vertex needed in both x direction and y direction compared to the array
             if (vertices == null || vertices.Length != (PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1))
             {
                 vertices = new Vector3[(PerlinNoiseGen.NewWidth + 1) * (PerlinNoiseGen.NewHeight + 1)];
